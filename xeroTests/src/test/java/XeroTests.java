@@ -139,30 +139,32 @@ public class XeroTests extends Helper{
 	   
 
 }
- /* @Test(priority = 1, description = "LoginToXero")
-	public void LoginToXero() throws InterruptedException {
+  @Test(priority = 3, description = "LoginToXero")
+	public void LoginToXero() throws InterruptedException, IOException  {
  	
 		logger = report.startTest("LoginToXero");
 		OpenUrl(" https://login.xero.com/");
 		Thread.sleep(2000);
-		enter_by_id("User@gmail.com", "email");
-     enter_by_id("pwd","password");
-     click_btn_by_id("submitButton");
-	   //need to create valoid login
-     
-	    //clear_before_password_by_id("marina","password" );
-	    click_btn_by_xpath("/html/body/app-root/div/div[2]/app-login/div/form/div[3]/button");
-	    Thread.sleep(2000);
-		String title = getTitle();
-		System.out.println(title);
-		logger.log(LogStatus.INFO, "successfully on page " +title);
-		logger.log(LogStatus.INFO, "successfully on page " +title +logger.addScreenCapture(takeScreenShot()));
-		String expected = "Apitesting";
-		Assert.assertEquals(title, expected);
-		Thread.sleep(2000);
+		enter_by_id("gopala.anumanchipalli@gmail.com", "email");
+	    enter_by_id("password12","password");
+	    click_btn_by_id("submitButton");
+	    Thread.sleep(10000);
+	    String title= getTitle();
+	    String title_expected =  "My Xero | Home";
+	     
+	     if( title.equals(title_expected))
+	     {
+	       logger.log(LogStatus.INFO, "Successfully open Home page  "  +logger.addScreenCapture(takeScreenShot())); 
+	       logger.log(LogStatus.PASS, "Test Pass");
+	 
+	     }
+	     else {
+	  	   logger.log(LogStatus.FAIL, "Test Failed");
+	     }
+	     Assert.assertEquals(title , title_expected );
 
 
-}*/ 
+} 
  
 	@AfterClass
 	public void CloseTest() {
