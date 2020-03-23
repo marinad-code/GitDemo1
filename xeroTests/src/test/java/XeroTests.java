@@ -139,7 +139,7 @@ public class XeroTests extends Helper{
 	   
 
 }
-  @Test(priority = 3, description = "LoginToXero")
+  @Test(priority = 4, description = "LoginToXero")
 	public void LoginToXero() throws InterruptedException, IOException  {
  	
 		logger = report.startTest("LoginToXero");
@@ -164,6 +164,47 @@ public class XeroTests extends Helper{
 	     Assert.assertEquals(title , title_expected );
 
 
+} 
+  
+  @Test(priority = 3, description = "LoginToXeroForgotPw")
+	public void LoginToXeroForgotPw() throws InterruptedException, IOException  {
+	
+		logger = report.startTest("LoginToXeroForgotPw");
+		OpenUrl(" https://login.xero.com/");
+		Thread.sleep(2000);
+		click_btn_by_xpath("//a[@class='forgot-password-advert']");
+		Thread.sleep(2000);
+	    enter_by_id("hello@gmail.com","UserName");
+	    click_btn_by_xpath("//a[@class='x-btn blue']");
+	    Thread.sleep(4000);
+	    boolean message_displayed = false;
+	    boolean message_displayed_expected =true; 
+	    message_displayed =check_element_by_xpath("//p[contains(text(),'A link to reset your password has been sent to:')]").isDisplayed();
+
+	     if( message_displayed == message_displayed_expected)
+	       {
+	    	 logger.log(LogStatus.INFO, "message on a page:    " + check_element_by_xpath("//p[contains(text(),'A link to reset your password has been sent to:')]").getText());
+				logger.log(LogStatus.INFO, "message on a page:    "  +logger.addScreenCapture(takeScreenShot()));
+	   
+	       }
+	       else {
+	    	   logger.log(LogStatus.FAIL, "Test Failed");
+	       }
+         Assert.assertEquals(message_displayed,message_displayed_expected);
+         message_displayed =false;
+         message_displayed =check_element_by_xpath("//strong[contains(text(),'hello@gmail.com')]").isDisplayed();
+         if( message_displayed == message_displayed_expected)
+	       {
+	    	 logger.log(LogStatus.INFO, "message on a page:     " + check_element_by_xpath("//strong[contains(text(),'hello@gmail.com')]").getText());
+				logger.log(LogStatus.INFO, "message on a page:      "  +logger.addScreenCapture(takeScreenShot()));
+	    	   logger.log(LogStatus.PASS, "Test Pass");
+	       }
+	       else {
+	    	   logger.log(LogStatus.FAIL, "Test Failed");
+	       }
+       Assert.assertEquals(message_displayed,message_displayed_expected);
+	    
+	    
 } 
  
 	@AfterClass

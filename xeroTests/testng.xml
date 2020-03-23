@@ -9,6 +9,7 @@
                 <include name="LoginToXeroIncorrectUN"/>
                 <include name="LoginToXeroLogout"/>
                 <include name="LoginToXero"/>
+                <include name="LoginToXeroForgotPw"/>
                 <include name="LoginToXeroIncorrectPW"/>
 				<exclude name="TryXero" />
 			</methods>
