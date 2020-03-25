@@ -11,6 +11,9 @@
                 <include name="LoginToXero"/>
                 <include name="LoginToXeroForgotPw"/>
                 <include name="LoginToXeroIncorrectPW"/>
+                
+                <include name="TryXeroAllEmpty"/>
+				
 				<exclude name="TryXero" />
 			</methods>
 			</class>

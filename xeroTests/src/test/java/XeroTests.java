@@ -24,7 +24,7 @@ public class XeroTests extends Helper{
 	    	
 			logger = report.startTest("LoginToXeroIncorrectUN");
 			OpenUrl(" https://login.xero.com/");
-			Thread.sleep(2000);
+			Thread.sleep(4000);
 			enter_by_id("User@gmail.com", "email");
 	        enter_by_id("pwd","password");
 	        click_btn_by_id("submitButton");
@@ -87,7 +87,7 @@ public class XeroTests extends Helper{
      click_btn_by_id("submitButton");
      Thread.sleep(10000);
      String title= getTitle();
-     String title_expected =  "My Xero | Home";
+     String title_expected =  "Xero | Dashboard | self";
      
      if( title.equals(title_expected))
      {
@@ -98,9 +98,13 @@ public class XeroTests extends Helper{
   	   logger.log(LogStatus.FAIL, "Test Failed");
      }
      Assert.assertEquals(title , title_expected );
-     click_btn_by_xpath("//a[@class='username']");
+     
+     
+    // click_btn_by_xpath("//a[@class='username']");
+     click_btn_by_xpath("//*[@id='header']/header/div/ol[2]/li[5]/button/div/img");
      Thread.sleep(2000);
-     click_btn_by_xpath("//a[contains(text(),'Logout')]");
+    // click_btn_by_xpath("//a[contains(text(),'Logout')]");
+     click_btn_by_xpath("//*[@id='header']/header/div/ol[2]/li[5]/div/div[2]/div/ol/li[5]/a");
      Thread.sleep(6000);
      String text = check_element_by_xpath("//h2[@class='x-boxed noBorder']").getText();
      String text_expected =  "Welcome to Xero";
@@ -150,7 +154,7 @@ public class XeroTests extends Helper{
 	    click_btn_by_id("submitButton");
 	    Thread.sleep(10000);
 	    String title= getTitle();
-	    String title_expected =  "My Xero | Home";
+	    String title_expected =  "Xero | Dashboard | self";
 	     
 	     if( title.equals(title_expected))
 	     {
@@ -159,7 +163,7 @@ public class XeroTests extends Helper{
 	 
 	     }
 	     else {
-	  	   logger.log(LogStatus.FAIL, "Test Failed");
+	  	   logger.log(LogStatus.FAIL, "Test Failed -wrong title");
 	     }
 	     Assert.assertEquals(title , title_expected );
 
@@ -200,13 +204,54 @@ public class XeroTests extends Helper{
 	    	   logger.log(LogStatus.PASS, "Test Pass");
 	       }
 	       else {
-	    	   logger.log(LogStatus.FAIL, "Test Failed");
+	    	   logger.log(LogStatus.FAIL, "Test Failed -No message regarding link sent");
 	       }
        Assert.assertEquals(message_displayed,message_displayed_expected);
 	    
 	    
 } 
- 
+  @Test(priority = 5, description = "TryXeroAllEmpty")
+	public void TryXeroAllEmpty() throws InterruptedException, IOException {
+	
+		logger = report.startTest("TryXeroAllEmpty");
+		OpenUrl(" https://www.xero.com/us/");
+		Thread.sleep(2000);
+		click_element_by_linkText("Try Xero for free");
+		Thread.sleep(4000);
+		//String title = check_element_by_xpath("//div[@class='title-text']").getText();
+		String title =check_element_by_linkText("Free trial").getText();
+		System.out.println(title);
+		String title_expected= "Free trial";
+		if( title.equals(title_expected))
+	     {
+	       logger.log(LogStatus.INFO, "Successfully open Free trail  "  +logger.addScreenCapture(takeScreenShot())); 
+	     	 
+	     }
+	     else {
+	  	   logger.log(LogStatus.FAIL, "Test Failed -- No Free trail page");
+	     }
+	     Assert.assertEquals(title , title_expected );
+		
+	     //Submit with empty fields
+	     click_btn_by_xpath("//span[@class='g-recaptcha-submit']");
+	     
+	     Thread.sleep(6000);
+	     //Check error messages
+	     String message_1 =check_element_by_id("signup-form-error-message-1").getText();
+	     String message_1_expected = "First name can't be empty";
+	     if( message_1.equals(message_1))
+	     {
+	       logger.log(LogStatus.INFO, "First name can't be empty --- message  is shown "  +logger.addScreenCapture(takeScreenShot())); 
+	     	 
+	     }
+	     else {
+	  	   logger.log(LogStatus.FAIL, "Test Failed -- First name can't be empty --- message  is NOT shown");
+	     }
+	     Assert.assertEquals(message_1 , message_1);
+	  
+  
+  }
+  
 	@AfterClass
 	public void CloseTest() {
 	    CloseBrowser();

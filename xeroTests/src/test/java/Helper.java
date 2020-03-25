@@ -217,6 +217,24 @@ public class Helper {
 				return elem;
 					
 			}
+			public static WebElement check_element_by_id( String id){
+				WebElement elem = driver.findElement(By.id(id));
+				check_null_isdisplayed(elem ,id);
+				return elem;
+					
+			}
+			public static WebElement check_element_by_linkText( String linkText){
+				WebElement elem = driver.findElement(By.linkText(linkText)); 
+				check_null_isdisplayed(elem ,linkText);
+				return elem;
+					
+			}
+			public static void click_element_by_linkText( String linkText){
+				WebElement elem = driver.findElement(By.linkText(linkText)); 
+				check_null_isdisplayed_click(elem, linkText);
+					
+			}
+			
 			public static void check_btn_by_xpath(WebDriver driver, String xpth){
 				WebElement loginBtn = driver.findElement(By.xpath(xpth));
 				check_null_isdisplayed_click(loginBtn ,xpth);
