@@ -24,7 +24,7 @@ public class XeroTests extends Helper{
 	    	
 			logger = report.startTest("LoginToXeroIncorrectUN");
 			OpenUrl(" https://login.xero.com/");
-			Thread.sleep(4000);
+			Thread.sleep(10000);
 			enter_by_id("User@gmail.com", "email");
 	        enter_by_id("pwd","password");
 	        click_btn_by_id("submitButton");
@@ -52,7 +52,7 @@ public class XeroTests extends Helper{
  	
 		logger = report.startTest("LoginToXeroIncorrectPW");
 		OpenUrl(" https://login.xero.com/");
-		Thread.sleep(2000);
+		Thread.sleep(10000);
 		enter_by_id("gopala.anumanchipalli@gmail.com", "email");
         enter_by_id("password","password");
         click_btn_by_id("submitButton");
@@ -81,7 +81,7 @@ public class XeroTests extends Helper{
  	
 		logger = report.startTest("LoginToXeroLogout");
 		OpenUrl(" https://login.xero.com/");
-		Thread.sleep(2000);
+		Thread.sleep(10000);
 		enter_by_id("gopala.anumanchipalli@gmail.com", "email");
      enter_by_id("password12","password");
      click_btn_by_id("submitButton");
@@ -128,7 +128,7 @@ public class XeroTests extends Helper{
  	
 		logger = report.startTest("TryXero");
 		OpenUrl(" https://www.xero.com/us/");
-		Thread.sleep(2000);
+		Thread.sleep(10000);
 		enter_by_id("User@gmail.com", "email");
      enter_by_id("pwd","password");
      click_btn_by_id("submitButton");
@@ -148,7 +148,7 @@ public class XeroTests extends Helper{
  	
 		logger = report.startTest("LoginToXero");
 		OpenUrl(" https://login.xero.com/");
-		Thread.sleep(2000);
+		Thread.sleep(10000);
 		enter_by_id("gopala.anumanchipalli@gmail.com", "email");
 	    enter_by_id("password12","password");
 	    click_btn_by_id("submitButton");
@@ -175,12 +175,12 @@ public class XeroTests extends Helper{
 	
 		logger = report.startTest("LoginToXeroForgotPw");
 		OpenUrl(" https://login.xero.com/");
-		Thread.sleep(2000);
+		Thread.sleep(10000);
 		click_btn_by_xpath("//a[@class='forgot-password-advert']");
-		Thread.sleep(2000);
+		Thread.sleep(10000);
 	    enter_by_id("hello@gmail.com","UserName");
 	    click_btn_by_xpath("//a[@class='x-btn blue']");
-	    Thread.sleep(4000);
+	    Thread.sleep(10000);
 	    boolean message_displayed = false;
 	    boolean message_displayed_expected =true; 
 	    message_displayed =check_element_by_xpath("//p[contains(text(),'A link to reset your password has been sent to:')]").isDisplayed();
