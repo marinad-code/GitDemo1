@@ -210,7 +210,7 @@ public class XeroTests extends Helper{
 	    
 	    
 } 
-  @Test(priority = 5, description = "TryXeroAllEmpty")
+  @Test(priority = 6, description = "TryXeroAllEmpty")
 	public void TryXeroAllEmpty() throws InterruptedException, IOException {
 	
 		logger = report.startTest("TryXeroAllEmpty");
@@ -242,7 +242,7 @@ public class XeroTests extends Helper{
 	     if( message_1.equals(message_1))
 	     {
 	       logger.log(LogStatus.INFO, "First name can't be empty --- message  is shown "  +logger.addScreenCapture(takeScreenShot())); 
-	     	 
+	       logger.log(LogStatus.PASS, "Test Pass");
 	     }
 	     else {
 	  	   logger.log(LogStatus.FAIL, "Test Failed -- First name can't be empty --- message  is NOT shown");
@@ -251,6 +251,53 @@ public class XeroTests extends Helper{
 	  
   
   }
+  @Test(priority = 5, description = "TryXeroFullOfferDetails")
+	public void TryXeroFullOfferDetails() throws InterruptedException, IOException {
+	
+		logger = report.startTest("TryXeroFullOfferDetails");
+		OpenUrl(" https://www.xero.com/us/");
+		Thread.sleep(2000);
+		click_element_by_linkText("Try Xero for free");
+		Thread.sleep(4000);
+		//String title = check_element_by_xpath("//div[@class='title-text']").getText();
+		String title =check_element_by_linkText("Free trial").getText();
+		System.out.println(title);
+		String title_expected= "Free trial";
+		if( title.equals(title_expected))
+	     {
+	       logger.log(LogStatus.INFO, "Successfully open Free trail  "  +logger.addScreenCapture(takeScreenShot())); 
+	     	 
+	     }
+	     else {
+	  	   logger.log(LogStatus.FAIL, "Test Failed -- No Free trail page");
+	     }
+	     Assert.assertEquals(title , title_expected );
+		//click to see full offer
+	    Helper.click_element_by_linkText("See full offer details");
+	     
+	     Thread.sleep(8000);
+	     //Check  new page "Offer details" was loaded
+	       String winHandleBefore = driver.getWindowHandle();
+	        for(String winHandle : driver.getWindowHandles()){
+	            driver.switchTo().window(winHandle);
+	        }
+	     logger.log(LogStatus.INFO, "Successfully open ---Offer details page   "  +logger.addScreenCapture(takeScreenShot()));
+	     String title1 = getTitle();
+	     System.out.println(title1);
+			String title1_expected= "Offer details | Xero US";
+			if( title1.equals(title1_expected))
+		     {
+		       logger.log(LogStatus.INFO, "Successfully open ---Offer details page   "  +logger.addScreenCapture(takeScreenShot())); 
+		       logger.log(LogStatus.PASS, "Test Pass"); 
+		     }
+		     else {
+		  	   logger.log(LogStatus.FAIL, "Test Failed -- No Offer details page");
+		     }
+		     Assert.assertEquals(title1 , title1_expected );
+	
+	        
+
+}
   
 	@AfterClass
 	public void CloseTest() {

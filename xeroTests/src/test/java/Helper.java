@@ -223,6 +223,12 @@ public class Helper {
 				return elem;
 					
 			}
+			public static WebElement check_element_by_className( String class_name){
+				WebElement elem = driver.findElement(By.className(class_name));
+				check_null_isdisplayed(elem ,class_name);
+				return elem;
+					
+			}
 			public static WebElement check_element_by_linkText( String linkText){
 				WebElement elem = driver.findElement(By.linkText(linkText)); 
 				check_null_isdisplayed(elem ,linkText);
