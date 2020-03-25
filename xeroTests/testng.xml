@@ -12,7 +12,6 @@
                 <include name="LoginToXeroIncorrectPW"/>
                 <include name="TryXeroAllEmpty"/>
                  <include name="TryXeroFullOfferDetails"/>
-				
 				<exclude name="TryXero" />
 			</methods>
 			</class>

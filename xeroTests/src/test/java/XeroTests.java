@@ -218,7 +218,7 @@ public class XeroTests extends Helper{
 		Thread.sleep(2000);
 		click_element_by_linkText("Try Xero for free");
 		Thread.sleep(4000);
-		//String title = check_element_by_xpath("//div[@class='title-text']").getText();
+		
 		String title =check_element_by_linkText("Free trial").getText();
 		System.out.println(title);
 		String title_expected= "Free trial";
@@ -247,7 +247,7 @@ public class XeroTests extends Helper{
 	     else {
 	  	   logger.log(LogStatus.FAIL, "Test Failed -- First name can't be empty --- message  is NOT shown");
 	     }
-	     Assert.assertEquals(message_1 , message_1);
+	     Assert.assertEquals(message_1 , message_1_expected);
 	  
   
   }

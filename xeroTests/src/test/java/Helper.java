@@ -60,7 +60,13 @@ public class Helper {
 	public static void CloseReport() {
 		report.flush();
 	}
-
+	/* name of the method:   createReport
+	 * BriefDescription  :  create Report 
+	 * Arguments         :  None
+	 *  createdby        :  Automation team 
+	 *  created date     :02/20/20 
+	 *  LastModified Date:02/22/20          
+	 */ 
 		
 		public static void createReport() {
 			String filename = new SimpleDateFormat("'Xero_report'YYYYMMddHHmm'.html'").format(new Date());
