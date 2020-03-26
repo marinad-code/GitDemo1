@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.LogStatus;
@@ -14,17 +16,41 @@ public class XeroTests extends Helper{
 	@BeforeClass
 	public void Initialize() {
 		
-	InitializeDriver();
+	//InitializeDriver();
 	createReport();
 
 	}
+	 @Parameters({ "browser" })
+
+	 @BeforeTest
+	 public void changeDriver(String browser) throws Exception {
+	 	
+	      beforetest(browser);
+
+	 	}
+
 
  @Test(priority = 1, description = "LoginToXeroIncorrectUN")
 		public void LoginToXeroIncorrectUN() throws InterruptedException, IOException {
 	    	
 			logger = report.startTest("LoginToXeroIncorrectUN");
 			OpenUrl(" https://login.xero.com/");
-			Thread.sleep(10000);
+            boolean page_loaded = false;
+            boolean page_loaded_expected = true;
+            String title = "Login | Xero Accounting Software";
+            if (wait_for( title)) {
+            	page_loaded = true;
+            }
+            if( page_loaded ==  page_loaded_expected)
+ 	       {
+ 	    	   logger.log(LogStatus.INFO, "Login | Xero Accounting Software page was  loaded");
+
+ 	       }
+ 	       else {
+ 	    	   logger.log(LogStatus.FAIL, "Test Failed -  Login | Xero Accounting Software page was not loaded on time");
+ 	       }
+ 	       Assert.assertEquals(page_loaded,page_loaded_expected);
+ 	       
 			enter_by_id("User@gmail.com", "email");
 	        enter_by_id("pwd","password");
 	        click_btn_by_id("submitButton");
@@ -143,6 +169,7 @@ public class XeroTests extends Helper{
 	   
 
 }
+
   @Test(priority = 4, description = "LoginToXero")
 	public void LoginToXero() throws InterruptedException, IOException  {
  	
@@ -210,6 +237,7 @@ public class XeroTests extends Helper{
 	    
 	    
 } 
+
   @Test(priority = 6, description = "TryXeroAllEmpty")
 	public void TryXeroAllEmpty() throws InterruptedException, IOException {
 	

@@ -11,9 +11,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.relevantcodes.extentreports.ExtentReports;
@@ -38,6 +43,34 @@ public class Helper {
 	public static void InitializeDriver() {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
+	}
+	public static boolean wait_for(String title) {
+	WebDriverWait wait = new WebDriverWait(driver, 40);
+	boolean expected = wait.until(ExpectedConditions.titleContains(title));
+	return expected;
+	}
+	
+	public static void beforetest(String browser) throws Exception
+	{
+	    try {
+	        if (browser.equalsIgnoreCase("Firefox")) {
+	            System.out.println(browser);
+	            //System.setProperty("webdriver.gecko.driver","path_to\\geckodriver.exe");;
+	            driver = new FirefoxDriver();
+	        } else if (browser.equalsIgnoreCase("chrome")) {
+	            System.out.println(browser);
+	            WebDriverManager.chromedriver().setup();
+	    		driver = new ChromeDriver();
+	            //System.setProperty("webdriver.chrome.driver","path_to\\chromedriver.exe");
+	            //driver = new ChromeDriver();
+	        } else if (browser.equalsIgnoreCase("Safari")) {
+	            //System.setProperty("webdriver.ie.driver", "path_to\\IEDriverServer.exe");
+	        	 System.out.println("============   "+browser);
+	        	driver =  new SafariDriver();
+	        }
+	    } catch (WebDriverException e) {
+	        System.out.println(e.getMessage());
+	    }
 	}
 	/* name of the method:   OpenUrl
 	 * BriefDescription  :  Open Url
