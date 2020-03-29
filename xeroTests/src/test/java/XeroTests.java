@@ -34,7 +34,7 @@ public class XeroTests extends Helper{
 		public void LoginToXeroIncorrectUN() throws InterruptedException, IOException {
 	    	
 			logger = report.startTest("LoginToXeroIncorrectUN");
-			OpenUrl(" https://login.xero.com/");
+			OpenUrl("https://login.xero.com/");
             boolean page_loaded = false;
             boolean page_loaded_expected = true;
             String title = "Login | Xero Accounting Software";
@@ -77,7 +77,7 @@ public class XeroTests extends Helper{
 	public void LoginToXeroIncorrectPW() throws InterruptedException, IOException {
  	
 		logger = report.startTest("LoginToXeroIncorrectPW");
-		OpenUrl(" https://login.xero.com/");
+		OpenUrl("https://login.xero.com/");
 		Thread.sleep(10000);
 		enter_by_id("gopala.anumanchipalli@gmail.com", "email");
         enter_by_id("password","password");
@@ -106,24 +106,28 @@ public class XeroTests extends Helper{
 	public void LoginToXeroLogout() throws InterruptedException, IOException {
  	
 		logger = report.startTest("LoginToXeroLogout");
-		OpenUrl(" https://login.xero.com/");
+		OpenUrl("https://login.xero.com/");
 		Thread.sleep(10000);
 		enter_by_id("gopala.anumanchipalli@gmail.com", "email");
      enter_by_id("password12","password");
      click_btn_by_id("submitButton");
      Thread.sleep(10000);
      String title= getTitle();
-     String title_expected =  "Xero | Dashboard | self";
-     
-     if( title.equals(title_expected))
+     //Xero | Dashboard | SelfTest2 
+     String title_expected =  "Xero | Dashboard | ";//self";
+     boolean strings_starts_theSame = false;
+     boolean strings_starts_theSame_expected = true;
+     if( title.startsWith(title_expected))
      {
+    	 
+    	System.out.println("==============is true"); 
        logger.log(LogStatus.INFO, "Successfully open Home page  "  +logger.addScreenCapture(takeScreenShot())); 
- 
+       strings_starts_theSame = true;
      }
      else {
   	   logger.log(LogStatus.FAIL, "Test Failed");
      }
-     Assert.assertEquals(title , title_expected );
+     Assert.assertEquals(strings_starts_theSame ,strings_starts_theSame_expected);
      
      
     // click_btn_by_xpath("//a[@class='username']");
@@ -153,7 +157,7 @@ public class XeroTests extends Helper{
 	public void TryXero() throws InterruptedException, IOException {
  	
 		logger = report.startTest("TryXero");
-		OpenUrl(" https://www.xero.com/us/");
+		OpenUrl("https://www.xero.com/us/");
 		Thread.sleep(10000);
 		enter_by_id("User@gmail.com", "email");
      enter_by_id("pwd","password");
@@ -169,30 +173,112 @@ public class XeroTests extends Helper{
 	   
 
 }
+ @Test(priority = 7, description = "TryXeroAccountBrPage")
+	public void TryXeroAccountBrPage() throws InterruptedException, IOException {
+	
+		logger = report.startTest("TryXeroAccountBrPage");
+		OpenUrl("https://www.xero.com/us/");
+		Thread.sleep(2000);
+		click_element_by_linkText("Try Xero for free");
+		Thread.sleep(4000);
+		
+		String title =check_element_by_linkText("Free trial").getText();
+		System.out.println(title);
+		String title_expected= "Free trial";
+		if( title.equals(title_expected))
+	     {
+	       logger.log(LogStatus.INFO, "Successfully open Free trail  "  +logger.addScreenCapture(takeScreenShot())); 
+	     	 
+	     }
+	     else {
+	  	   logger.log(LogStatus.FAIL, "Test Failed -- No Free trail page");
+	     }
+	     Assert.assertEquals(title , title_expected );
+	   
+	   //a[contains(text(),'accountant or bookkeeper')]
+	     //Click on Accountant and Bookkeeper
+	     click_btn_by_xpath("//a[contains(text(),'accountant or bookkeeper')]");
+	     
+	     Thread.sleep(6000);
+	     //Check new page Title
+	   
+	     String title_expected1 = "Sign up for the Xero Partner Program | Xero US"; 
+	     String title1 = getTitle();
+	   
+	     if( title.equals(title_expected))
+	     {
+	       logger.log(LogStatus.INFO, "Successfully open Free trail  "  +logger.addScreenCapture(takeScreenShot())); 
+	     	 
+	     }
+	     else {
+	  	   logger.log(LogStatus.FAIL, "Test Failed -- No Free trail page");
+	     }
+	     Assert.assertEquals(title1 , title_expected1 );
+	   
+}
+ 
+ @Test(priority = 8, description = "CheckXero")
+	public void CheckXero() throws InterruptedException, IOException  {
+	
+		logger = report.startTest("CheckXero");
+		OpenUrl("https://www.xero.com/");
+		Thread.sleep(4000);
+		//login button
+		Helper.click_element_by_partiallyLinkText("Login");
+		Thread.sleep(4000);
+		enter_by_id("gopala.anumanchipalli@gmail.com", "email");
+	    enter_by_id("password12","password");
+	    click_btn_by_id("submitButton");
+	    Thread.sleep(10000);
+	    String title= getTitle();
+	    String title_expected =  "Xero | Dashboard | ";//self";
+	     boolean strings_starts_theSame = false;
+	     boolean strings_starts_theSame_expected = true;
+	     if( title.startsWith(title_expected))
+	     {
+	    	 
+	    	System.out.println("==============is true"); 
+	       logger.log(LogStatus.INFO, "Successfully open Home page  "  +logger.addScreenCapture(takeScreenShot())); 
+	  
+	       strings_starts_theSame = true;
+	     }
+	     else {
+	  	   logger.log(LogStatus.FAIL, "Test Failed-wrong title");
+	     }
+	     Assert.assertEquals(strings_starts_theSame ,strings_starts_theSame_expected);
+	     //check accounting
+	     click_btn_by_name("navigation-menu/accounting");
+	     Thread.sleep(2000);  
 
+} 
   @Test(priority = 4, description = "LoginToXero")
 	public void LoginToXero() throws InterruptedException, IOException  {
  	
 		logger = report.startTest("LoginToXero");
-		OpenUrl(" https://login.xero.com/");
+		OpenUrl("https://login.xero.com/");
 		Thread.sleep(10000);
 		enter_by_id("gopala.anumanchipalli@gmail.com", "email");
 	    enter_by_id("password12","password");
 	    click_btn_by_id("submitButton");
 	    Thread.sleep(10000);
 	    String title= getTitle();
-	    String title_expected =  "Xero | Dashboard | self";
-	     
-	     if( title.equals(title_expected))
+	    String title_expected =  "Xero | Dashboard | ";//self";
+	     boolean strings_starts_theSame = false;
+	     boolean strings_starts_theSame_expected = true;
+	     if( title.startsWith(title_expected))
 	     {
+	    	 
+	    	System.out.println("==============is true"); 
 	       logger.log(LogStatus.INFO, "Successfully open Home page  "  +logger.addScreenCapture(takeScreenShot())); 
 	       logger.log(LogStatus.PASS, "Test Pass");
-	 
+	       strings_starts_theSame = true;
 	     }
 	     else {
-	  	   logger.log(LogStatus.FAIL, "Test Failed -wrong title");
+	  	   logger.log(LogStatus.FAIL, "Test Failed-wrong title");
 	     }
-	     Assert.assertEquals(title , title_expected );
+	     Assert.assertEquals(strings_starts_theSame ,strings_starts_theSame_expected);
+	  
+
 
 
 } 

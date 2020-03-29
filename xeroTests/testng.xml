@@ -6,16 +6,9 @@
     <classes>
       <class name="test.java.XeroTests">
       <methods>
-               
+               <include name="CheckXero"/>
               
-                <include name="LoginToXeroIncorrectUN"/>
-                <include name="LoginToXeroLogout"/>
-                <include name="LoginToXero"/>
-                <include name="LoginToXeroForgotPw"/>
-                <include name="LoginToXeroIncorrectPW"/>
-                <include name="TryXeroAllEmpty"/>
-                 <include name="TryXeroFullOfferDetails"/>
-                 
+                
 				<exclude name="TryXero" />
 			</methods>
 			</class>
@@ -26,7 +19,7 @@
   <classes>
     <class name="test.java.XeroTests">
       <methods>             
-                <include name="LoginToXero"/>
+             <include name="LoginToXeroIncorrectUN"/>
        </methods>
 </class>
 </classes>

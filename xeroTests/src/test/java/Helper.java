@@ -36,7 +36,7 @@ public class Helper {
 	/* name of the method:   InitializeDriver
 	 * BriefDescription  :  Initialize Chrome Driver
 	 * Arguments         :  none
-	 *  createdby        :  Automation team 
+	 *  created by        :  Automation team 
 	 *  created date     :02/20/20 
 	 *  LastModified Date:02/28/20          
 	 */ 
@@ -216,24 +216,7 @@ public class Helper {
 				check_null_isdisplayed_click(btn ,id);
 
 				}
-			public void login_to_xero() throws InterruptedException{
-				 
-	
-						enter_by_xpath( "marina@ta.com","/html/body/app-root/div/div[2]/app-login/div/form/div[1]/input");
-						enter_by_xpath( "marina","/html/body/app-root/div/div[2]/app-login/div/form/div[2]/input");
-					   
-					    //clear_before_password_by_id("marina","password" );
-					    click_btn_by_xpath("/html/body/app-root/div/div[2]/app-login/div/form/div[3]/button");
-					    Thread.sleep(2000);
-						String title = getTitle();
-						System.out.println(title);
-						logger.log(LogStatus.INFO, "successfully on page " +title);
-						String expected = "Apitesting";
-						Assert.assertEquals(title, expected);
-						Thread.sleep(2000);
-
-
-			}
+			
 			
 			public static void  enter_btn_by_id( String id) {
 				WebElement btn = driver.findElement(By.id(id));
@@ -277,6 +260,11 @@ public class Helper {
 			public static void click_element_by_linkText( String linkText){
 				WebElement elem = driver.findElement(By.linkText(linkText)); 
 				check_null_isdisplayed_click(elem, linkText);
+					
+			}
+			public static void click_element_by_partiallyLinkText( String plinkText){
+				WebElement elem = driver.findElement(By.partialLinkText(plinkText)); 
+				check_null_isdisplayed_click(elem, plinkText);
 					
 			}
 			
@@ -337,17 +325,6 @@ public class Helper {
 			  WebElement pw = driver.findElement(By.id(id));
 				pw.clear();
 				pw.sendKeys(input);
-			}
-			public static void default_login_to_SF() {
-				String[] my_str = {"marinad@xyz.com","Ramina_1"};
-				enter_by_id(my_str[0],"username");
-		        clear_before_password_by_id(my_str[1],"password" );
-		        click_btn_by_xpath("//*[@id=\"Login\"]");
-			}
-			public static void verify_home_page() {
-				String title = getTitle();
-				String expected = "Home Page ~ Salesforce - Developer Edition";
-				Assert.assertEquals(title, expected);
 			}
 			
 				
