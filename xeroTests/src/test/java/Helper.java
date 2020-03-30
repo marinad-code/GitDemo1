@@ -257,6 +257,24 @@ public class Helper {
 				return elem;
 					
 			}
+			public static boolean check_title_by_substr(String title_expected) throws IOException {
+				 String title= getTitle();
+				    //String title_expected =  "Xero | Dashboard | ";//self";
+				     boolean strings_starts_theSame = false;
+				     boolean strings_starts_theSame_expected = true;
+				     if( title.startsWith(title_expected))
+				     {
+				    	 
+				    	System.out.println("==============is true"); 
+				       logger.log(LogStatus.INFO, "Successfully open page  "+title_expected+ " "  +logger.addScreenCapture(takeScreenShot())); 
+				  
+				       strings_starts_theSame = true;
+				     }
+				     else {
+				  	   logger.log(LogStatus.FAIL, "Test Failed-wrong title");
+				     }
+				    return  strings_starts_theSame; 
+			}
 			public static void click_element_by_linkText( String linkText){
 				WebElement elem = driver.findElement(By.linkText(linkText)); 
 				check_null_isdisplayed_click(elem, linkText);
@@ -273,6 +291,7 @@ public class Helper {
 				check_null_isdisplayed_click(loginBtn ,xpth);
 					
 			}
+			
 			public static void login_sf(WebDriver driver, String name, String id_name, String password, String id_password, String xpth) {
 				enter_un_or_pw(driver, name, id_name);
 				enter_un_or_pw(driver, password, id_password);
